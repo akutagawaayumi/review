@@ -1,0 +1,16 @@
+{
+  "id": "ID",
+  "title": "タイトル",
+  "description": "説明",
+  "moreinfo": "リンク",
+  "things": [
+    {
+      "stars": "five",
+      "name": "___",
+      "by": "___",
+      "text": "___",
+      "img": "../logo/いい感じ.png",
+      "link": "/"
+    }
+  ]
+}

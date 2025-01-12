@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <script src="script.js"></script>
+    <script>
+        if (!localStorage.getItem('yourName') && localStorage.getItem('yourEmail')) {
+            location.replace('/')
+        } else {
+            indexJSON('sake.json')
+        }
+    </script>
+
+    <!--og:meta-->
+    <meta content="website" property="og:type">
+    <title>abi | the best items</title>
+    <meta content="abi | the best items" property="og:title">
+    <meta content="アビ ✨ ザ・ベスト・アイテムズ ✨ とてもおすすめのアイテムズ ✨" name="description">
+    <meta content="アビ ✨ ザ・ベスト・アイテムズ ✨ とてもおすすめのアイテムズ ✨" name="og:description">
+
+    <!--for Twitter-->
+    <meta content="summary_large_image" name="twitter:card">
+    <meta content="https://the-best-items.com/review/" property="og:url">
+    <meta content="https://the-best-items.com/review/cover.png" property="og:image">
+    <meta content="https://the-best-items.com/review/cover.png" name="twitter:image:src">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho&display=swap" rel="stylesheet">
+
+    <!--Icons-->
+    <link rel="icon" href="../log/icon/favicon.jpg">
+    <link rel="icon" href="../log/icon/icon.jpg" sizes="192x192">
+    <link rel="apple-touch-icon-precomposed" href="../log/icon/icon.jpg" sizes="180x180">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body onLoad="timer()">
+    <header>
+        <h1 id="title">abi</h1>
+        <h2 id="description">アビ ✨ 辛口評価表 ✨</h2>
+        <nav id="org">
+            <details>
+                <summary>評価 Review</summary>
+                <input id="five" value="five" type="radio" name="org">
+                <label for="five">★★★★★</label><br>
+                <input id="four" value="four" type="radio" name="org">
+                <label for="four">★★★★</label><br>
+                <input id="three" value="three" type="radio" name="org">
+                <label for="three">★★★</label><br>
+                <input id="two" value="two" type="radio" name="org">
+                <label for="two">★★</label><br>
+                <input id="one" value="one" type="radio" name="org">
+                <label for="one">★</label>
+            </details>
+            <input id="all" value="all" type="radio" name="org" checked>
+            <label for="all">全部 View All</label>
+        </nav>
+    </header>
+
+    <main id="things"></main>
+
+    <footer>
+        <p class="wide">
+            <span>Last Modified</span>
+            <time id="lastModified"></time>
+        </p>
+    </footer>
+
+    <dialog id="modal">
+        <button type="button" id="closeBtn">×</button>
+        <h3 id="name"></h3>
+        <img src="" alt="">
+        <p id="text"></p>
+        <a id="link" href="#" target="_blank"></a>
+    </dialog>
+
+    <script>
+        const lastModif = document.querySelector('#lastModified');
+        lastModif.textContent = document.lastModified;
+        lastModif.setAttribute("data-time", document.lastModified);
+
+        lastModif.addEventListener('click', function (event) {
+            let ago = new Date(document.lastModified);
+            let diff = new Date().getTime() - ago.getTime();
+
+            let progress = new Date(diff);
+            if (progress.getUTCFullYear() - 1970) {
+                event.target.textContent = progress.getUTCFullYear() - 1970 + ' year ago';
+            } else if (progress.getUTCMonth()) {
+                event.target.textContent = progress.getUTCMonth() + ' month ago';
+            } else if (progress.getUTCDate() - 1) {
+                event.target.textContent = progress.getUTCDate() - 1 + ' day ago';
+            } else if (progress.getUTCHours()) {
+                event.target.textContent = progress.getUTCHours() + ' hour ago';
+            } else if (progress.getUTCMinutes()) {
+                event.target.textContent = progress.getUTCMinutes() + ' minute ago';
+            } else {
+                event.target.textContent = 'Now';
+            }
+        });
+
+        counter()
+
+        function counter() {
+            const footer = document.querySelector("footer")
+
+            const sessionTime = document.createElement("p")
+            sessionTime.id = "timer"
+            sessionTime.innerHTML = `
+            Session Time
+            <time>00:00:00</time>
+            `;
+            footer.prepend(sessionTime)
+
+            const clickCount = document.createElement("p")
+            clickCount.id = "click"
+            clickCount.innerHTML = `
+            Click
+            <b>0</b>
+            `;
+            footer.prepend(clickCount)
+
+            let count = 0;
+            document.addEventListener('click', () => {
+                count++;
+                let click = document.querySelector("#click b")
+                click.innerText = count;
+            })
+        }
+
+        // 初期化
+        // body onLoad="timer()"
+        let start = new Date();
+        let hour = 0;
+        let min = 0;
+        let sec = 0;
+        let now = 0;
+        let datet = 0;
+
+        function timer() {
+            now = new Date();
+            datet = parseInt((now.getTime() - start.getTime()) / 1000);
+            hour = parseInt(datet / 3600);
+            min = parseInt((datet / 60) % 60);
+            sec = datet % 60;
+
+            // 数値が1桁の場合、頭に0を付けて2桁で表示する指定
+            if (hour < 10) { hour = "0" + hour; }
+            if (min < 10) { min = "0" + min; }
+            if (sec < 10) { sec = "0" + sec; }
+
+            // フォーマットを指定（不要な行を削除する）
+            let timer = hour + ':' + min + ':' + sec;
+            document.querySelector("#timer time").innerText = timer;
+            setTimeout("timer()", 1000);
+        }
+    </script>
+</body>

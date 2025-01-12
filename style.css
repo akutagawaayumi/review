@@ -1,0 +1,224 @@
+html {
+    font-size: 16px;
+    height: -webkit-fill-available;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "San Francisco";
+    src: url("../log/css/font/Compact-Text-Regular.otf"),
+        url("../log/css/font/UI-Display-Regular.otf");
+}
+
+body {
+    font-family: -apple-system, 'BlinkMacSystemFont', 'San Francisco', 'Hiragino Kaku Gothic ProN', 'メイリオ', Sans-Serif;
+    min-height: -webkit-fill-available;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+body,
+h1,
+h2,
+h3,
+#org details,
+#things ul,
+footer p,
+#closeBtn {
+    padding: 0;
+    margin: 0;
+}
+
+header,
+#things,
+footer {
+    padding: 0.5rem;
+    margin: 0;
+}
+
+body {
+    display: grid;
+    background-attachment: fixed;
+    background-clip: content-box;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+header,
+nav,
+footer {
+    width: 100%;
+}
+
+header,
+nav {
+    place-self: start;
+}
+
+footer {
+    place-self: end;
+}
+
+header,
+footer,
+footer p,
+#org {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+header,
+footer,
+footer p,
+#org {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+footer p {
+    flex: 1 250px;
+}
+
+footer p.wide {
+    flex: 1 500px;
+}
+
+header {
+    position: sticky;
+    top: 0;
+}
+
+#org details summary {
+    background: #000;
+    color: #fff;
+    padding: 0 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+#org input[type="radio"]+label {
+    text-decoration: none underline;
+}
+
+#org input[type="radio"]:checked+label {
+    text-decoration: double underline;
+}
+
+#things ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 0.5rem;
+}
+
+#things ul li {
+    border: solid #000 1px;
+    padding: 0.5rem;
+    list-style: none;
+    overflow: hidden;
+}
+
+#org input[type="radio"]+label:hover,
+#things ul li:hover,
+#closeBtn:hover {
+    cursor: pointer;
+}
+
+a {
+    color: #fff;
+    background: #000;
+    display: inline-block;
+    font-weight: bolder;
+    padding: 0.25rem;
+    text-decoration: none;
+}
+
+#closeBtn {
+    appearance: none;
+    background: transparent;
+    color: #000;
+    border: none;
+    outline: none;
+    font-family: monospace;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+#moreinfo {
+    clear: both;
+    width: 100%;
+}
+
+#closeBtn {
+    font-size: 150%;
+}
+
+#things h3 {
+    font-size: 125%;
+}
+
+h1,
+h2 {
+    font-size: 100%;
+}
+
+#things h3,
+#org details input[type="radio"]+label {
+    font-size: 111%;
+}
+
+label[for="all"],
+a {
+    font-size: 90%;
+}
+
+#things small {
+    font-size: 75%;
+}
+
+h1,
+h2,
+#things h3,
+#name small,
+#things li small {
+    font-weight: 500;
+}
+
+#modal {
+    width: 90%;
+    max-width: 500px;
+}
+
+#modal h3,
+#modal img {
+    margin-bottom: 2.5rem;
+}
+
+#modal h3 {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 400;
+    font-style: normal;
+    float: left;
+    writing-mode: vertical-lr;
+}
+
+#modal img {
+    float: right;
+    width: calc(100% - 4.5rem);
+    max-width: 300px;
+}
+
+#modal #text {
+    clear: both;
+}
